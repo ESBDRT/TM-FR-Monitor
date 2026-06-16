@@ -7,9 +7,21 @@ def make_request(base_url, headers):
 
     url = build_request_url(base_url)
 
-    r = requests.get(url=url, headers=headers);
-    print(r.status_code)
-    print(r.text)
+    try:
+        r = requests.get(url=url, headers=headers);
+        r.raise_for_status()
+        print(r.status_code)
+        print(r.text)
+    except requests.exceptions.HTTPError as e:
+        if (r.status_code == 403):
+            print("403\n")
+            # Get new cookie/ swap proxies
+            # Retry logic
+        else:
+            raise RuntimeError(f"Failed to fetch data: {r.status_code}") from e
+    else:
+        print(r.status_code)
+
 
 def build_request_url(url):
     url_path = urlparse(url).path
