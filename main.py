@@ -4,6 +4,8 @@ import src.monitor.monitor as monitor
 
 def main():
 
+    print("\nWelcome to TM-FR-Monitor by @ESBDRT\n")
+
     base_url = ""
     while not (base_url):
         base_url = input("Enter the url to monitor: ").strip()

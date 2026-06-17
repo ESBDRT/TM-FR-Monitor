@@ -9,6 +9,7 @@ def loop(base_url):
 
     user_settings = settings.load_settings()
     while (True):
+        print("\nFetching data...\n")
         ticket_data = req.make_request(base_url, "ticket")
         event_data = req.make_request(base_url, "event")
 
@@ -26,7 +27,7 @@ def loop(base_url):
              print(f"Sleeping for {user_settings['delay']} seconds...")
              time.sleep(int(user_settings['delay']))
         else:
-            print("failure")
+            print("Error: something went wrong")
             exit(1)
 
     
