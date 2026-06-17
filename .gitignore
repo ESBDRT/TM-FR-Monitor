@@ -2,3 +2,5 @@ env/
 src/requests/__pycache__/
 src/userSettings/__pycache__/
 src/monitor/__pycache__/
+src/utils/__pycache__/
+src/webhooks/__pycache__/
