@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright
 from fake_useragent import UserAgent
 from urllib.parse import urlparse
 import requests
+import json
 import time
 
 def make_request(base_url, data_type):
@@ -12,9 +13,7 @@ def make_request(base_url, data_type):
         try:
             r = requests.get(url=url, headers=headers, timeout=10)
             r.raise_for_status()
-            print(r.status_code)
-            print(r.text)
-            return (r.text)
+            return (json.loads(r.text))
         except requests.exceptions.HTTPError:
             if r.status_code == 403:
                 print("Error 403 (flagged cookies/ip), updating..")
