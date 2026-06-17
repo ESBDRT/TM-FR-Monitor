@@ -4,8 +4,8 @@ from urllib.parse import urlparse
 import requests
 import time
 
-def make_request(base_url, settings):
-    url = build_request_url(base_url)
+def make_request(base_url, data_type):
+    url = build_request_url(base_url, data_type)
     headers = get_headers(base_url);
 
     for retry in range(5):
@@ -14,10 +14,10 @@ def make_request(base_url, settings):
             r.raise_for_status()
             print(r.status_code)
             print(r.text)
-            return (0)
+            return (r.text)
         except requests.exceptions.HTTPError:
             if r.status_code == 403:
-                print("403 received, refreshing headers...")
+                print("Error 403 (flagged cookies/ip), updating..")
                 headers = get_headers(base_url)
 
             elif r.status_code >= 500:
@@ -33,13 +33,22 @@ def make_request(base_url, settings):
 
     raise RuntimeError("Maximum retries exceeded")
 
-def build_request_url(url):
-    url_path = urlparse(url).path
-    url_split = url_path.split("/")
-    idseance = url_split[-1]
-    request_url = "https://www.ticketmaster.fr/api/grille-tarifaire/manifestation/idmanif/" + idseance + "/78768?codLang=FR&codCoMod=WEB&onlyFirstAvailableByDay=false&tokenRecaptchaGoogle="
+# https://www.ticketmaster.fr/api/manifestations/idmanif/662618?responseGroup=ManifestationDetailDto&idTiers=78768&codlang=FR&userCountry=FR&codCoMod=WEB
 
-    return (request_url)
+def build_request_url(url, data_type):
+    ticket_data_url = urlparse(url).path
+    ticket_data_url_split = ticket_data_url.split("/")
+    idseance = ticket_data_url_split[-1]
+
+    event_data_full_url = "https://www.ticketmaster.fr/api/manifestations/idmanif/" + idseance + "?responseGroup=ManifestationDetailDto&idTiers=78768&codlang=FR&userCountry=FR&codCoMod=WEB"
+
+    ticket_data_full_url = "https://www.ticketmaster.fr/api/grille-tarifaire/manifestation/idmanif/" + idseance + "/78768?codLang=FR&codCoMod=WEB&onlyFirstAvailableByDay=false&tokenRecaptchaGoogle="
+
+    if (data_type == "ticket"):
+        return (ticket_data_full_url)
+    elif (data_type == "event"):
+        return (event_data_full_url)
+
 
 def get_headers(url):
 
