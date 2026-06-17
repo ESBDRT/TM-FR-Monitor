@@ -1,0 +1,3 @@
+delay=
+auto_retry=
+discord_webhook_url=
