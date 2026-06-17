@@ -15,11 +15,6 @@ def load_settings():
                         value = "30"
                         modified = True
 
-                if key == "auto_retry":
-                    if not value:
-                        value = "True"
-                        modified = True
-
                 if key == "discord_webhook_url":
                     if not value:
                         while not value:
