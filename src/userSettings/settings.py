@@ -1,8 +1,8 @@
-def load_settings(filename="settings.txt"):
+def load_settings():
     settings = {}
     modified = False
     
-    with open(filename, encoding='utf-8') as file:
+    with open("settings.txt", encoding='utf-8') as file:
         for line in file:
             line = line.strip()
             if line and not line.startswith('#'):
@@ -25,13 +25,13 @@ def load_settings(filename="settings.txt"):
                         while not value:
                             value = input("Enter your discord webhook url: ").strip()
                             if not value:
-                                print("Discord webhook url cannot be empty.")
+                                print("Error: discord webhook url cannot be empty.")
                         modified = True
                 
                 settings[key] = value
     
     if modified:
-        with open(filename, 'w', encoding='utf-8') as file:
+        with open("settings.txt", 'w', encoding='utf-8') as file:
             for key, value in settings.items():
                 file.write(f"{key}={value}\n")
     
