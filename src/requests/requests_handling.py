@@ -32,8 +32,6 @@ def make_request(base_url, data_type):
 
     raise RuntimeError("Maximum retries exceeded")
 
-# https://www.ticketmaster.fr/api/manifestations/idmanif/662618?responseGroup=ManifestationDetailDto&idTiers=78768&codlang=FR&userCountry=FR&codCoMod=WEB
-
 def build_request_url(url, data_type):
     ticket_data_url = urlparse(url).path
     ticket_data_url_split = ticket_data_url.split("/")
@@ -47,7 +45,6 @@ def build_request_url(url, data_type):
         return (ticket_data_full_url)
     elif (data_type == "event"):
         return (event_data_full_url)
-
 
 def get_headers(url):
 
