@@ -60,6 +60,9 @@ This Ticketmaster monitor automatically checks for available tickets on concert 
    - The program fetches event and ticket data at your configured interval
    - When tickets become available, a Discord notification is sent instantly
 
+![Webhook image](assets/cli.png)
+![Webhook image](assets/webhook.png)
+
 
 ## Discord Webhook Setup
 
