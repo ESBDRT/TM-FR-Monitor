@@ -1,3 +1,2 @@
-delay=
-auto_retry=
+delay=30
 discord_webhook_url=
