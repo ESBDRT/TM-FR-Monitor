@@ -1,5 +1,8 @@
 # Ticketmaster FR Monitor
 
+> [!WARNING]
+> This monitor was made back when Ticketmaster FR was still on their old system, they recently moved to a newer one. You might encounter issues running the program, will be fixed later.
+
 A Ticketmaster FR monitor that checks for available tickets on concert events and notifies you instantly via Discord webhook.
 
 ## Overview
