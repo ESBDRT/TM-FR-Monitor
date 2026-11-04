@@ -1,4 +1,4 @@
-certifi==2026.5.20
+certifi==2026.10.18
 charset-normalizer==3.4.7
 colorama==0.4.6
 discord-webhook==1.4.1
